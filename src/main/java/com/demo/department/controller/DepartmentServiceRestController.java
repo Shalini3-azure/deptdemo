@@ -46,7 +46,7 @@ public class DepartmentServiceRestController {
     // ---------------------------
     @GetMapping("/slow")
     public ResponseEntity<?> slow() throws Exception {
-        Thread.sleep(3000);
+        Thread.sleep(30000);
         return ResponseEntity.ok("Delayed response from Department");
     }
 
