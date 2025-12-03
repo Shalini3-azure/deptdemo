@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dept-deployment
+  namespace: developer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dept
+  template:
+    metadata:
+      labels:
+        app: dept
+    spec:
+      containers:
+        - name: dept
+          image: observabilityacr9425.azurecr.io/deptdemo:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-Xms256m -Xmx512m"

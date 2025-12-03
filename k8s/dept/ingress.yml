@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dept-ingress
+  namespace: developer
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /dept
+            pathType: Prefix
+            backend:
+              service:
+                name: dept-service
+                port:
+                  number: 80
