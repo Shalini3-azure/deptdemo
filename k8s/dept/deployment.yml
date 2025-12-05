@@ -21,3 +21,5 @@ spec:
           env:
             - name: JAVA_OPTS
               value: "-Xms256m -Xmx512m"
+      imagePullSecrets:
+        - name: acr-secret
