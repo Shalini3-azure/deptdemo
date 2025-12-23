@@ -9,6 +9,4 @@ ADD https://github.com/open-telemetry/opentelemetry-java-instrumentation/release
 COPY target/*.jar app.jar
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-javaagent:/otel/opentelemetry-javaagent.jar", "-Dotel.exporter.otlp.endpoint=http://otel-collector.observability.svc.cluster.local:4317", "-jar", "/app/app.jar"]
-
+ENTRYPOINT ["java", "-javaagent:/otel/opentelemetry-javaagent.jar", "-Dotel.exporter.otlp.protocol=grpc", "-Dotel.exporter.otlp.endpoint=http://otel-collector.observability.svc.cluster.local:4317", "-jar", "/app/app.jar"]
