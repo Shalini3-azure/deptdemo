@@ -7,19 +7,29 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dept
+      app: emp
   template:
     metadata:
       labels:
-        app: dept
+        app: emp
     spec:
       containers:
-        - name: dept
-          image: observabilityacr9425.azurecr.io/deptdemo:latest
+        - name: emp
+          image: observabilityacr9425.azurecr.io/empdemo:latest
           ports:
             - containerPort: 8080
           env:
             - name: JAVA_OPTS
               value: "-Xms256m -Xmx512m"
+            # -----------------------------
+            # OpenTelemetry environment vars
+            - name: OTEL_SERVICE_NAME
+              value: empdemo
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://otel-collector.observability.svc.cluster.local:4318
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_TRACES_EXPORTER
+              value: otlp
       imagePullSecrets:
         - name: acr-secret
