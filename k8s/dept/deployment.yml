@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dept-deployment
+  name: deployment
   namespace: developer
 spec:
   replicas: 1
