@@ -10,4 +10,8 @@ COPY target/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-javaagent:/otel/opentelemetry-javaagent.jar","-jar","/app/app.jar"]
+ENTRYPOINT ["java",
+           "-javaagent:/otel/opentelemetry-javaagent.jar",
+           "-Dotel.exporter.otlp.endpoint=http://otel-collector:4317",
+           "-jar","/app/app.jar"]
+
