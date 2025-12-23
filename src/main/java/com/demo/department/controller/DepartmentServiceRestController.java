@@ -71,4 +71,13 @@ public class DepartmentServiceRestController {
         }
         return ResponseEntity.ok("Created department: " + name);
     }
+    @GetMapping("/whoami")
+public ResponseEntity<String> whoami() {
+    return ResponseEntity.ok("department-service");
+}
+@GetMapping("/internal")
+public ResponseEntity<String> internal() {
+    return ResponseEntity.ok("Internal department data");
+}
+
 }
